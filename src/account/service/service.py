@@ -33,6 +33,11 @@ class AccountService:
         loop.add_signal_handler(signal.SIGTERM, lambda: asyncio.create_task(signal_handler()))
 
     def run(self):
+        if self.config.service.logging:
+            logging.basicConfig(level=logging.INFO)
+
+        self.nats.dispatcher.include_router(authentication.router)
+
         loop = asyncio.new_event_loop()
         loop.run_until_complete(self.start())
         try:
@@ -43,7 +48,6 @@ class AccountService:
     async def start(self):
         logging.info("Starting service")
         self._set_signal_handlers()
-        self.nats.dispatcher.include_router(authentication.router)
         await self.nats.connect()
 
     async def stop(self):
