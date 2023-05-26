@@ -1,0 +1,16 @@
+service:
+  name: termes.account
+  logging: true
+
+nats:
+  host: 0.0.0.0
+  port: 4222
+
+database:
+  dialect: postgresql
+  driver: asyncpg
+  host: 0.0.0.0
+  port: 5432
+  user: database_user
+  password: database_password
+  name: database_name
