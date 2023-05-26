@@ -1,9 +1,17 @@
-from account.nats.router import Router
-from account.nats.types import Request
+from typing import Any
+
+from renats.dispatcher import Router
+
+from account.database.database import Database
 
 router = Router()
 
 
-@router.message_handler("authentication")
-async def authentication(request: Request):
-    return request.data
+@router.callback("authentication")
+async def authentication(headers: dict[str, str], data: dict[str, Any], database: Database):
+    return {
+        "status": 403,
+        "error": {
+            "detail": "Access denied"
+        }
+    }

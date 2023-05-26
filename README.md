@@ -15,3 +15,9 @@ pip install --upgrade -r requirements.txt
 export PYTHONPATH="$PYTHONPATH:$(pwd)/src"
 python3 -m account.service
 ```
+
+### Dependencies:
+- [ReNats](https://github.com/Respirens/renats) - communication over NATS
+- [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy) - ORM
+- [Pydantic](https://github.com/pydantic/pydantic) - data validation
+- [PyYAML](https://github.com/yaml/pyyaml) - configuration in YAML format
